@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Heladeria.Data.Entidades.Sabor>
+
+@{
+    ViewData["Title"] = "Nuestro Catálogo";
+}
+
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 text-danger fw-bold">🍦 Catálogo de Sabores</h1>
+        <p class="lead text-muted">Explora nuestra variedad de gustos artesanales preparados con la mejor calidad.</p>
+    </div>
+
+    <div class="text-center mb-5">
+        <a asp-action="Crear" class="btn btn-danger btn-lg px-4 py-2 shadow-sm rounded-pill fw-bold">
+            ➕ Agregar Nuevo Sabor
+        </a>
+    </div>
+
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var sabor in Model)
+            {
+                @if (sabor.Disponible)
+                {
+
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm border-0 position-relative">
+
+                            @if (!sabor.Disponible)
+                            {
+                                <span class="position-absolute top-0 start-0 m-2 badge bg-secondary">Sin Stock</span>
+                            }
+                            else
+                            {
+                                <span class="position-absolute top-0 start-0 m-2 badge bg-success">Disponible</span>
+                            }
+
+                            <div class="card-body pt-5">
+                                <h3 class="card-title h4 text-dark fw-bold mb-1">@sabor.Nombre</h3>
+
+
+                                <span class="badge bg-danger-subtle text-danger mb-3 px-2 py-1 small rounded">
+                                    📁 @(sabor.Categoria?.Nombre ?? "General")
+                                </span>
+
+                                <p class="card-text text-secondary small">@sabor.Descripcion</p>
+                            </div>
+
+                            <div class="card-footer bg-transparent border-0 pb-4 pt-0 d-flex justify-content-between align-items-center gap-2">
+                                <span class="fs-5 fw-bold text-danger">$@sabor.PrecioPorKilo.ToString("N0") <small class="fs-6 text-muted fw-normal">/ Kg</small></span>
+    
+                                <div class="d-flex gap-1">
+        
+                                    <a asp-action="Editar" asp-route-id="@sabor.Id" class="btn btn-outline-warning btn-sm rounded-pill px-3 fw-bold text-dark">
+                                        ✏️ Editar
+                                    </a>
+
+        
+                                    <form asp-action="BorrarLogico" asp-route-id="@sabor.Id" method="post" onsubmit="return confirm('¿Estás seguro de que deseas quitar este sabor del catálogo?');">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill px-3 fw-bold">
+                                            🗑️ Quitar
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        }
+        else
+        {
+            <div class="col-12 text-center my-5">
+                <p class="fs-4 text-muted">Aún no hay sabores disponibles en el catálogo. ¡Pronto agregaremos más!</p>
+            </div>
+        }
+    </div>
+</div>

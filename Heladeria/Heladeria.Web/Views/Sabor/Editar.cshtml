@@ -1,0 +1,70 @@
+﻿@model Heladeria.Data.Entidades.Sabor
+
+@{
+    ViewData["Title"] = "Modificar Sabor";
+}
+
+<div class="container my-5" style="max-width: 600px;">
+    <div class="card shadow-sm border-0 p-4">
+        <h2 class="text-warning fw-bold text-center mb-4">✏️ Modificar Sabor de Helado</h2>
+
+        <form asp-action="Editar" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+            
+            
+            <input type="hidden" asp-for="Id" />
+
+            
+            <div class="mb-3">
+                <label asp-for="Nombre" class="form-label fw-semibold text-secondary">Nombre del Sabor</label>
+                <input asp-for="Nombre" class="form-control" required />
+                <span asp-validation-for="Nombre" class="text-danger small"></span>
+            </div>
+
+            
+            <div class="mb-3">
+                <label asp-for="Descripcion" class="form-label fw-semibold text-secondary">Descripción</label>
+                <textarea asp-for="Descripcion" class="form-control" rows="3" required></textarea>
+                <span asp-validation-for="Descripcion" class="text-danger small"></span>
+            </div>
+
+            <div class="row">
+                
+                <div class="col-md-6 mb-3">
+                    <label asp-for="PrecioPorKilo" class="form-label fw-semibold text-secondary">Precio por Kilo ($)</label>
+                    <input asp-for="PrecioPorKilo" type="number" step="0.01" class="form-control" required />
+                    <span asp-validation-for="PrecioPorKilo" class="text-danger small"></span>
+                </div>
+
+                
+                <div class="col-md-6 mb-3">
+                    <label asp-for="CategoriaId" class="form-label fw-semibold text-secondary">Categoría</label>
+                    <select asp-for="CategoriaId" class="form-select" required>
+                        <option value="">-- Seleccionar --</option>
+                        @if (ViewBag.Categorias != null)
+                        {
+                            @foreach (var cat in ViewBag.Categorias)
+                            {
+                                <option value="@cat.Id">@cat.Nombre</option>
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="CategoriaId" class="text-danger small"></span>
+                </div>
+            </div>
+
+            
+            <div class="form-check form-switch mb-4">
+                <input class="form-check-input" type="checkbox" asp-for="Disponible">
+                <label class="form-check-label fw-semibold text-secondary" asp-for="Disponible">¿Disponible para la venta?</label>
+            </div>
+
+            
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-warning w-100 py-2 rounded-pill fw-bold shadow-sm text-dark">💾 Guardar Cambios</button>
+                <a asp-action="Index" class="btn btn-outline-secondary w-100 py-2 rounded-pill fw-bold">❌ Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+

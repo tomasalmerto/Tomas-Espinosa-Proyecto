@@ -1,0 +1,15 @@
+C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Data\obj\Debug\net10.0\Heladeria.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Data\obj\Debug\net10.0\Heladeria.Data.AssemblyInfoInputs.cache
+C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Data\obj\Debug\net10.0\Heladeria.Data.AssemblyInfo.cs
+C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Data\obj\Debug\net10.0\Heladeria.Data.csproj.CoreCompileInputs.cache
+C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Data\obj\Debug\net10.0\Heladeria.Data.csproj.AssemblyReference.cache
+C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Data\bin\Debug\net10.0\Heladeria.Data.deps.json
+C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Data\bin\Debug\net10.0\Heladeria.Data.dll
+C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Data\bin\Debug\net10.0\Heladeria.Data.pdb
+C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Data\obj\Debug\net10.0\Heladeria.Data.dll
+C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Data\obj\Debug\net10.0\refint\Heladeria.Data.dll
+C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Data\obj\Debug\net10.0\Heladeria.Data.pdb
+C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Data\obj\Debug\net10.0\ref\Heladeria.Data.dll
+C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Data\obj\Debug\net10.0\Heladeri.AF761D1F.Up2Date
+C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Data\bin\Debug\net10.0\Heladeria.Data.runtimeconfig.json
+C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Data\obj\Debug\net10.0\Heladeria.Data.genruntimeconfig.cache
