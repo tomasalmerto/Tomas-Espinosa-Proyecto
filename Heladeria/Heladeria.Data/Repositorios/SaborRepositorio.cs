@@ -13,9 +13,17 @@ namespace Heladeria.Data.Repositorios
             _context = context;
         }
 
-        public async Task<IEnumerable<Sabor>> ObtenerTodosAsync()
+        public async Task<IEnumerable<Sabor>> ObtenerTodosAsync(bool incluirEliminadosLogicos = false)
         {
-            return await _context.Sabores.Include(s => s.Categoria).ToListAsync();
+            if (incluirEliminadosLogicos)
+            {
+                return await _context.Sabores.Include(s => s.Categoria).ToListAsync();
+            }
+
+            return await _context.Sabores
+                                 .Include(s => s.Categoria)
+                                 .Where(s => s.Disponible)
+                                 .ToListAsync();
         }
 
         public async Task<Sabor?> ObtenerPorIdAsync(int id)
@@ -45,11 +53,21 @@ namespace Heladeria.Data.Repositorios
             }
         }
 
+        public async Task<bool> BorrarFisicoAsync(int id)
+        {
+            var sabor = await _context.Sabores.FindAsync(id);
+            if (sabor == null) return false;
+
+            _context.Sabores.Remove(sabor);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
         public async Task<IEnumerable<Categoria>> ObtenerCategoriasAsync()
         {
             return await _context.Categorias.OrderBy(c => c.Nombre).ToListAsync();
         }
-
     }
 }
+
 

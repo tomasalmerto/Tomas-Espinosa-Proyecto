@@ -13,3 +13,4 @@ C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\He
 C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Data\obj\Debug\net10.0\Heladeri.AF761D1F.Up2Date
 C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Data\bin\Debug\net10.0\Heladeria.Data.runtimeconfig.json
 C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Data\obj\Debug\net10.0\Heladeria.Data.genruntimeconfig.cache
+C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Data\obj\Debug\net10.0\Heladeria.Data.sourcelink.json

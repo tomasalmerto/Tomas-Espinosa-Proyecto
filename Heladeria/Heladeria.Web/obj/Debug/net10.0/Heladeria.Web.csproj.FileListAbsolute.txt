@@ -232,3 +232,5 @@ C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\He
 C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Web\bin\Debug\net10.0\Heladeria.Data.dll
 C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Web\bin\Debug\net10.0\Heladeria.Data.pdb
 C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Web\obj\Debug\net10.0\Heladeria.Web.csproj.AssemblyReference.cache
+C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Web\obj\Debug\net10.0\Heladeria.Web.sourcelink.json
+C:\Users\User\OneDrive\Desktop\Proyecto-ASP\Tomas-Espinosa-Proyecto\Heladeria\Heladeria.Web\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.Google.dll

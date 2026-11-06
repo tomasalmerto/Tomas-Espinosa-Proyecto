@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Iniciar Sesión";
+}
+
+<div class="container my-5" style="max-width: 500px;">
+    <div class="card shadow-sm border-0 p-5 text-center" style="background-color: #fff8f8;">
+        <h2 class="text-danger fw-bold mb-3">🍦 Heladería Autenticación</h2>
+        <p class="text-muted small mb-4">Inicia sesión de forma rápida y segura utilizando tu cuenta de Google para acceder a nuestro catálogo.</p>
+        
+        <hr class="my-4 mx-auto" style="width: 20%; border-top: 2px solid #dc3545;">
+
+        <div class="my-4">
+            <a asp-controller="Login" asp-action="Login" class="btn btn-outline-dark btn-lg px-4 py-2 w-100 shadow-sm rounded-pill fw-bold d-flex align-items-center justify-content-center gap-2">
+                <img src="https://googleapis.com" alt="Google" />
+                Iniciar sesión con Google
+            </a>
+        </div>
+    </div>
+</div>

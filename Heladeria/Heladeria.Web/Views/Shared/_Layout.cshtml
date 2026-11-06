@@ -13,22 +13,56 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Heladeria.Web</a>
+                <a class="navbar-brand fw-bold text-danger" asp-area="" asp-controller="Home" asp-action="Index">🍦 Heladeria.Web</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <!-- Enlaces de navegación principales (Izquierda) -->
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Sabor" asp-action="Index">🍦 Catálogo</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Sabor" asp-action="Index">Catálogo</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                    </ul>
+
+                    <!-- Estado de la sesión del usuario (Derecha) -->
+                    <ul class="navbar-nav gap-2">
+                        @if (User.Identity != null && User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark fw-semibold btn btn-light rounded-pill px-3 shadow-sm" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    👤 @User.Identity.Name
+                                    <span class="badge @(User.IsInRole("Admin") ? "bg-danger" : "bg-primary") ms-1 small">
+                                        @(User.IsInRole("Admin") ? "Admin" : "Usuario")
+                                    </span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end border-0 shadow mt-2" aria-labelledby="userDropdown">
+                                    <li class="px-3 py-2 text-muted small border-bottom">
+                                        @User.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item py-2 fw-bold text-danger d-flex align-items-center gap-2" asp-controller="Login" asp-action="Logout">
+                                            🚪 Cerrar Sesión
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="btn btn-outline-danger rounded-pill px-4 fw-bold shadow-sm" asp-controller="Login" asp-action="Index">
+                                    🔑 Ingresar
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -51,3 +85,4 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+

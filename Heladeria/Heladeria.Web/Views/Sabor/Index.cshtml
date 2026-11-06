@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Nuestro Catálogo";
+    bool isAdmin = User.IsInRole("Admin");
 }
 
 <div class="container my-5">
@@ -10,63 +11,84 @@
         <p class="lead text-muted">Explora nuestra variedad de gustos artesanales preparados con la mejor calidad.</p>
     </div>
 
-    <div class="text-center mb-5">
-        <a asp-action="Crear" class="btn btn-danger btn-lg px-4 py-2 shadow-sm rounded-pill fw-bold">
-            ➕ Agregar Nuevo Sabor
-        </a>
-    </div>
+    @if (isAdmin)
+    {
+        <div class="text-center mb-5">
+            <a asp-action="Crear" class="btn btn-danger btn-lg px-4 py-2 shadow-sm rounded-pill fw-bold">
+                ➕ Agregar Nuevo Sabor
+            </a>
+        </div>
+    }
 
     <div class="row">
         @if (Model != null && Model.Any())
         {
             @foreach (var sabor in Model)
             {
-                @if (sabor.Disponible)
-                {
+                <div class="col-md-4 mb-4">
+                    <!-- Si no está disponible, le aplicamos una opacidad y fondo gris para alertar visualmente al Admin -->
+                    <div class="card h-100 shadow-sm border-0 position-relative @(!sabor.Disponible ? "opacity-75 bg-light" : "")">
 
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100 shadow-sm border-0 position-relative">
+                        @if (!sabor.Disponible)
+                        {
+                            <span class="position-absolute top-0 start-0 m-2 badge bg-secondary">Baja Lógica (Oculto a Clientes)</span>
+                        }
+                        else
+                        {
+                            <span class="position-absolute top-0 start-0 m-2 badge bg-success">Disponible</span>
+                        }
 
-                            @if (!sabor.Disponible)
-                            {
-                                <span class="position-absolute top-0 start-0 m-2 badge bg-secondary">Sin Stock</span>
-                            }
-                            else
-                            {
-                                <span class="position-absolute top-0 start-0 m-2 badge bg-success">Disponible</span>
-                            }
+                        <div class="card-body pt-5">
+                            <h3 class="card-title h4 text-dark fw-bold mb-1">@sabor.Nombre</h3>
 
-                            <div class="card-body pt-5">
-                                <h3 class="card-title h4 text-dark fw-bold mb-1">@sabor.Nombre</h3>
+                            <span class="badge bg-danger-subtle text-danger mb-3 px-2 py-1 small rounded">
+                                📁 @(sabor.Categoria?.Nombre ?? "General")
+                            </span>
 
+                            <p class="card-text text-secondary small">@sabor.Descripcion</p>
+                        </div>
 
-                                <span class="badge bg-danger-subtle text-danger mb-3 px-2 py-1 small rounded">
-                                    📁 @(sabor.Categoria?.Nombre ?? "General")
-                                </span>
-
-                                <p class="card-text text-secondary small">@sabor.Descripcion</p>
-                            </div>
-
-                            <div class="card-footer bg-transparent border-0 pb-4 pt-0 d-flex justify-content-between align-items-center gap-2">
-                                <span class="fs-5 fw-bold text-danger">$@sabor.PrecioPorKilo.ToString("N0") <small class="fs-6 text-muted fw-normal">/ Kg</small></span>
+                        <div class="card-footer bg-transparent border-0 pb-4 pt-0 d-flex justify-content-between align-items-center gap-2">
+                            <span class="fs-5 fw-bold text-danger">$@sabor.PrecioPorKilo.ToString("N0") <small class="fs-6 text-muted fw-normal">/ Kg</small></span>
     
-                                <div class="d-flex gap-1">
-        
+                            <!-- Controles de gestión protegidos por Rol -->
+                            <div class="d-flex gap-1">
+                                @if (isAdmin)
+                                {
                                     <a asp-action="Editar" asp-route-id="@sabor.Id" class="btn btn-outline-warning btn-sm rounded-pill px-3 fw-bold text-dark">
                                         ✏️ Editar
                                     </a>
 
-        
-                                    <form asp-action="BorrarLogico" asp-route-id="@sabor.Id" method="post" onsubmit="return confirm('¿Estás seguro de que deseas quitar este sabor del catálogo?');">
-                                        <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill px-3 fw-bold">
-                                            🗑️ Quitar
-                                        </button>
-                                    </form>
-                                </div>
+                                    @if (sabor.Disponible)
+                                    {
+                                        <!-- Primera instancia: Dar de baja del catálogo (Borrado Lógico) -->
+                                        <form asp-action="BorrarLogico" asp-route-id="@sabor.Id" method="post" onsubmit="return confirm('¿Estás seguro de que deseas dar de baja lógica este sabor?');">
+                                            <button type="submit" class="btn btn-outline-secondary btn-sm rounded-pill px-3 fw-bold">
+                                                🗑️ Quitar
+                                            </button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <!-- Botón para Recuperar el Sabor del archivo (Alta Lógica) -->
+                                        <form asp-action="Restaurar" asp-route-id="@sabor.Id" method="post" onsubmit="return confirm('¿Deseas volver a activar este sabor en el catálogo público?');">
+                                            <button type="submit" class="btn btn-outline-success btn-sm rounded-pill px-3 fw-bold">
+                                                🔄 Restaurar
+                                            </button>
+                                        </form>
+
+                                        <!-- Segunda instancia: Borrado Físico Definitivo de la Base de Datos -->
+                                        <form asp-action="BorrarFisico" asp-route-id="@sabor.Id" method="post" onsubmit="return confirm('⚠️ ¡ATENCIÓN! Esto eliminará el sabor permanentemente de la base de datos SQL. ¿Continuar?');">
+                                            <button type="submit" class="btn btn-danger btn-sm rounded-pill px-3 fw-bold shadow-sm">
+                                                🔥 Eliminar Definitivo
+                                            </button>
+                                        </form>
+                                    }
+                                }
                             </div>
                         </div>
                     </div>
-                }
+                </div>
             }
         }
         else
